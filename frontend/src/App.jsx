@@ -11,7 +11,8 @@ function useApi(url) {
   useEffect(() => {
     let mounted = true;
     setLoading(true);
-    axios.get(url)
+    const apiUrl = import.meta.env.VITE_API_URL ? `${import.meta.env.VITE_API_URL}${url}` : url;
+    axios.get(apiUrl)
       .then(res => mounted && setData(res.data))
       .catch(err => mounted && setError(err))
       .finally(() => mounted && setLoading(false));
