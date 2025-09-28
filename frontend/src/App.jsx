@@ -88,7 +88,7 @@ function Hero({ ghProfile, profile }) {
       <div className="hero-links">
         {ghProfile?.html_url && <a className="btn" href={ghProfile.html_url} target="_blank" rel="noreferrer">GitHub</a>}
         {profile?.linkedin && <a className="btn" href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>}
-        {profile?.cv && <a className="btn btn-ghost" href={profile.cv} target="_blank" rel="noreferrer">Resume</a>}
+        <a className="btn btn-ghost" href="/ArnavPuggal_resume.pdf" target="_blank" rel="noreferrer">Resume</a>
       </div>
       {/* Backdrop removed to disable continuous line/dot animation */}
     </section>
@@ -113,7 +113,21 @@ function Projects({ local, repos, profile }) {
       <h2>Projects</h2>
       <div className="grid">
         {customProjects.map((p, idx) => (
-          <motion.div key={idx} className="card" whileHover={{ y: -6, rotate: -0.25 }}>
+          <motion.div 
+            key={idx} 
+            className="card" 
+            whileHover={{ 
+              y: -12, 
+              scale: 1.05, 
+              rotate: -0.5,
+              transition: { duration: 0.3 }
+            }}
+            style={{ 
+              position: 'relative',
+              overflow: 'hidden',
+              cursor: 'pointer'
+            }}
+          >
             <div className="card-title">{p.name}</div>
             <div className="card-type">{p.description}</div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4, marginTop: 8 }}>
@@ -129,18 +143,76 @@ function Projects({ local, repos, profile }) {
                 </span>
               ))}
             </div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileHover={{ 
+                opacity: 1, 
+                y: 0,
+                transition: { duration: 0.3, delay: 0.1 }
+              }}
+              style={{
+                position: 'absolute',
+                bottom: 0,
+                left: 0,
+                right: 0,
+                background: 'linear-gradient(transparent, rgba(0,0,0,0.9))',
+                padding: '20px 16px 16px',
+                color: 'white',
+                fontSize: '14px',
+                lineHeight: '1.4'
+              }}
+            >
+              <p style={{ margin: 0, fontSize: '13px' }}>
+                {p.description}
+              </p>
+            </motion.div>
           </motion.div>
         ))}
-        {local?.projects?.map((p) => (
-          <motion.a key={p.path} className="card" whileHover={{ y: -6, rotate: -0.25 }} href={`file://${p.path}`}>
-            <div className="card-title">{p.name}</div>
-            <div className="card-type">{p.type}</div>
-          </motion.a>
-        ))}
         {Array.isArray(repos) && repos.map((r) => (
-          <motion.a key={r.id} className="card" whileHover={{ y: -6, rotate: 0.25 }} href={r.html_url} target="_blank" rel="noreferrer">
+          <motion.a 
+            key={r.id} 
+            className="card" 
+            whileHover={{ 
+              y: -12, 
+              scale: 1.05, 
+              rotate: 0.5,
+              transition: { duration: 0.3 }
+            }}
+            href={r.html_url} 
+            target="_blank" 
+            rel="noreferrer"
+            style={{ 
+              position: 'relative',
+              overflow: 'hidden',
+              cursor: 'pointer',
+              textDecoration: 'none'
+            }}
+          >
             <div className="card-title">{r.name}</div>
             <div className="card-type">★ {r.stargazers_count ?? 0} • {r.language || 'Code'}</div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileHover={{ 
+                opacity: 1, 
+                y: 0,
+                transition: { duration: 0.3, delay: 0.1 }
+              }}
+              style={{
+                position: 'absolute',
+                bottom: 0,
+                left: 0,
+                right: 0,
+                background: 'linear-gradient(transparent, rgba(0,0,0,0.9))',
+                padding: '20px 16px 16px',
+                color: 'white',
+                fontSize: '14px',
+                lineHeight: '1.4'
+              }}
+            >
+              <p style={{ margin: 0, fontSize: '13px' }}>
+                {r.description || 'GitHub repository - Click to view on GitHub'}
+              </p>
+            </motion.div>
           </motion.a>
         ))}
       </div>
@@ -306,7 +378,7 @@ function Skills() {
                   transition={{ type: "spring", stiffness: 300 }}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.1 * index }}
+                  // FIX: Remove duplicate transition prop
                 >
                   {item}
                 </motion.span>
@@ -330,12 +402,12 @@ function Skills() {
                     transition={{ type: "spring", stiffness: 300 }}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.1 * index }}
+                    // FIX: Remove duplicate transition prop
                   >
                     {item}
                   </motion.span>
-        ))}
-      </div>
+                ))}
+              </div>
             </div>
           )}
         </motion.div>
@@ -343,7 +415,6 @@ function Skills() {
     </section>
   );
 }
-
 function Experience() {
   const { data: profile, loading, error } = useApi('/api/profile');
   const items = profile?.experience || [];

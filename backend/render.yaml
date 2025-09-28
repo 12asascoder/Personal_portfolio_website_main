@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: arnav-portfolio-backend
+    env: node
+    plan: free
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: GITHUB_USERNAME
+        sync: true
+      - key: AVATAR_URL
+        sync: false
+      - key: LINKEDIN_URL
+        sync: true
+      - key: CV_URL
+        sync: false

@@ -7,7 +7,35 @@ const path = require('path');
 const fs = require('fs');
 
 const app = express();
-app.use(cors());
+
+// Configure CORS for production
+const corsOptions = {
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    // Allow localhost for development
+    if (origin.includes('localhost') || origin.includes('127.0.0.1')) {
+      return callback(null, true);
+    }
+    
+    // Allow Vercel deployments
+    if (origin.includes('vercel.app') || origin.includes('arnav-portfolio')) {
+      return callback(null, true);
+    }
+    
+    // Allow custom domain if set
+    const allowedOrigins = process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',') : [];
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    
+    callback(new Error('Not allowed by CORS'));
+  },
+  credentials: true
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 const PORT = process.env.PORT || 5055;
@@ -124,7 +152,7 @@ app.get('/api/profile', async (_req, res) => {
           ]
         },
         {
-          role: 'Committee Member',
+          role: 'Committee Member at AARUUSH25',
           company: 'Aaruush, SRM University',
           period: 'Jun 2025 - Present',
           highlights: [
@@ -134,7 +162,7 @@ app.get('/api/profile', async (_req, res) => {
           ]
         },
         {
-          role: 'Student Volunteer',
+          role: 'Student Volunteer at AARUUSH24',
           company: 'Aaruush, SRM University',
           period: 'Sep 2024 - Jun 2025',
           highlights: [
@@ -274,7 +302,6 @@ app.get('/api/profile', async (_req, res) => {
             'Student Council Member - Leadership and organizational skills',
             'Robotics Club - Building and programming autonomous robots',
             'Quiz Team Captain - General knowledge and quick thinking',
-            'Library Assistant - Research and information management',
             'Peer Tutoring Program - Teaching mathematics and science to juniors',
             'Environmental Club - Sustainability and project management',
             'Cultural Committee - Event planning and coordination',
@@ -349,7 +376,7 @@ app.get('/api/profile', async (_req, res) => {
           name: 'Phoenix Protocol',
           description: 'Advanced communication protocol for secure data transmission',
           technologies: ['C++', 'Network Programming', 'Security', 'Protocol Design']
-        }
+        },
       ],
       achievements: [
         'Won 2nd place in Zonal level science activities and expos organised by directorate of education Delhi',
