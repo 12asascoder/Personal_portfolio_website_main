@@ -47,7 +47,6 @@ class ErrorBoundary extends React.Component {
 
 function Navbar({ profile, ghProfile }) {
   const items = [
-    { href: '/', label: 'Home' },
     { href: '/about', label: 'About' },
     { href: '/highlights', label: 'Highlights' },
     { href: '/projects', label: 'Projects' },
@@ -75,11 +74,17 @@ function Hero({ ghProfile, profile }) {
   return (
     <section id="home" className="hero">
       <div className="grid-bg" aria-hidden="true" />
-      {profile?.avatar ? (
-        <img src={profile.avatar} alt="Profile" className="avatar avatar-lg" />
-      ) : (
+      {(() => {
+        const avatar = profile?.avatar;
+        const resolved = avatar
+          ? (avatar.startsWith('http') ? avatar : `${import.meta.env.VITE_API_URL || ''}${avatar}`)
+          : null;
+        return resolved ? (
+          <img src={resolved} alt="Profile" className="avatar avatar-lg" />
+        ) : (
         <div className="avatar avatar-placeholder">{(profile?.name || 'AP').split(' ').map(s=>s[0]).join('').slice(0,2).toUpperCase()}</div>
-      )}
+        );
+      })()}
       <motion.h1 className="headline" initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ type: 'spring', stiffness: 70 }}>
         {(profile?.name || 'Arnav Puggal').toUpperCase()}
       </motion.h1>
@@ -259,6 +264,7 @@ function Highlights() {
       description: 'Attended the inaugural event of the first-ever HackerRank Campus Crew student chapter in India at SRMIST.'
     }
   ];
+  const [zoomSrc, setZoomSrc] = React.useState(null);
   return (
     <section id="highlights" className="section">
       <h2>Highlights</h2>
@@ -268,13 +274,24 @@ function Highlights() {
             <div className="card-title">{e.name}</div>
             <div className="grid" style={{ gridTemplateColumns:'repeat(3,1fr)' }}>
               {e.photos.map((p,i)=> (
-                <img key={i} src={p} alt={e.name+" photo"} style={{ width:'100%', height:140, objectFit:'cover', borderRadius:8 }} />
+                <img 
+                  key={i} 
+                  src={p} 
+                  alt={e.name+" photo"} 
+                  onClick={()=> setZoomSrc(p)}
+                  style={{ width:'100%', height:140, objectFit:'cover', borderRadius:8, cursor:'zoom-in', transition:'transform .2s ease' }} 
+                />
               ))}
             </div>
             <p style={{ margin: 0 }}>{e.description}</p>
           </div>
         ))}
       </div>
+      {zoomSrc && (
+        <div onClick={()=> setZoomSrc(null)} style={{ position:'fixed', inset:0, background:'rgba(0,0,0,0.8)', display:'grid', placeItems:'center', zIndex:9999, cursor:'zoom-out' }}>
+          <img src={zoomSrc} alt="zoom" style={{ maxWidth:'92vw', maxHeight:'92vh', borderRadius:12, boxShadow:'0 10px 30px rgba(0,0,0,0.6)' }} />
+        </div>
+      )}
     </section>
   );
 }
