@@ -581,9 +581,21 @@ export default function App({ section }) {
         {section === 'about' && <About />}
         {section === 'highlights' && <Highlights />}
         {section === 'projects' && <Projects local={local} repos={repos} profile={profile} />}
-        {section === 'experience' && <Experience />}
-        {section === 'education' && <Education />}
-        {section === 'achievements' && <Achievements />}
+        {section === 'experience' && (
+          <div style={{ background:'#000', width:'100%' }}>
+            <Experience />
+          </div>
+        )}
+        {section === 'education' && (
+          <div style={{ background:'#000', width:'100%' }}>
+            <Education />
+          </div>
+        )}
+        {section === 'achievements' && (
+          <div style={{ background:'#000', width:'100%' }}>
+            <Achievements />
+          </div>
+        )}
         {section === 'contact' && <Contact />}
     </div>
     </ErrorBoundary>

@@ -9,7 +9,7 @@ a { color: var(--text); text-decoration: none }
   .app { padding: 4px; gap: 2px; max-width: 100% }
 }
 
-.nav { position: relative; inset: 0; backdrop-filter: blur(10px); background: linear-gradient(180deg, rgba(10,10,11,0.6), rgba(10,10,11,0.2)); border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: center; gap: 10px; padding: 6px 6px; z-index: 50; width: 100%; margin-bottom: 2px }
+.nav { position: relative; inset: 0; backdrop-filter: blur(0); background: #000; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: center; gap: 10px; padding: 6px 6px; z-index: 50; width: 100%; margin-bottom: 2px }
 .nav, .hero, .section { justify-self: center; align-self: center }
 .nav .logo { width: 44px; height: 44px; border-radius: 12px; background: linear-gradient(135deg, var(--accent), #8e66ff); display:flex; align-items:center; justify-content:center; font-weight: 800 }
 .nav ul { display: flex; gap: 18px; list-style: none; padding: 0; margin: 0 }
@@ -75,10 +75,7 @@ a { color: var(--text); text-decoration: none }
 
 .backdrop { position: absolute; inset: 0; overflow: hidden; pointer-events: none }
 .dot { position: absolute; width: 6px; height: 6px; border-radius: 100%; background: linear-gradient(180deg, var(--accent), #fff3); left: calc(4% + (92% - 4%) * var(--i, 0)); top: calc(10% + 60% * var(--i, 0)); }
-.grid-bg { position: fixed; inset: 0; z-index: -1; background: radial-gradient(600px 300px at 20% -10%, rgba(123, 97, 255, 0.15), transparent), radial-gradient(800px 400px at 80% 110%, rgba(24, 144, 255, 0.12), transparent); overflow:hidden }
-.grid-bg::before, .grid-bg::after { content:""; position:absolute; inset:-20%; background: conic-gradient(from 0deg, rgba(123,97,255,0.15), rgba(24,144,255,0.15), rgba(123,97,255,0.15)); filter: blur(90px); animation: ether 14s linear infinite; opacity:.75 }
-.grid-bg::after { animation-direction: reverse; animation-duration: 18s; opacity:.55 }
-@keyframes ether { to { transform: rotate(1turn) } }
+.grid-bg { display: none }
 
 .section { min-height: calc(100vh - 120px); padding: 0; width: 100%; display: grid; place-items: center; text-align: center }
 .section h2 { font-size: 28px; margin: 0; padding: 0 }
@@ -126,7 +123,9 @@ a { color: var(--text); text-decoration: none }
 .tl-card li { margin: 0; padding: 0 }
 /* Timeline visuals */
 .timeline { position: relative; padding-left: 18px }
-.timeline::before { content:""; position:absolute; left: 12px; top:0; bottom:0; width:2px; background: rgba(255,255,255,0.12) }
+.timeline::before { content:""; position:absolute; left: 12px; top:0; bottom:0; width:2px; background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.28), rgba(255,255,255,0.12)); background-size: 100% 200%; animation: timelineGlow 3s linear infinite }
+.tl-card { position: relative; margin-left: 18px }
+@keyframes timelineGlow { 0% { background-position: 0 0 } 100% { background-position: 0 200% } }
 .tl-card { position: relative; margin-left: 18px }
 .tl-card::before { content:""; position:absolute; left: -18px; top: 16px; width:10px; height:10px; border-radius:50%; background: #6b9cff; box-shadow: 0 0 0 4px rgba(107,156,255,0.2) }
 @media (max-width: 768px) {
