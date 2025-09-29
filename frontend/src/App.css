@@ -125,10 +125,10 @@ a { color: var(--text); text-decoration: none }
 .tl-card ul { margin: 0; padding-left: 18px }
 .tl-card li { margin: 0; padding: 0 }
 /* Timeline visuals */
-.timeline { position: relative }
-.timeline::before { content:""; position:absolute; left: 24px; top:0; bottom:0; width:2px; background: #0a0a0a }
-.tl-card { position: relative; margin-left: 24px }
-.tl-card::before { content:""; position:absolute; left: -14px; top: 16px; width:10px; height:10px; border-radius:50%; background: #6b9cff; box-shadow: 0 0 0 4px rgba(107,156,255,0.15) }
+.timeline { position: relative; padding-left: 18px }
+.timeline::before { content:""; position:absolute; left: 12px; top:0; bottom:0; width:2px; background: rgba(255,255,255,0.12) }
+.tl-card { position: relative; margin-left: 18px }
+.tl-card::before { content:""; position:absolute; left: -18px; top: 16px; width:10px; height:10px; border-radius:50%; background: #6b9cff; box-shadow: 0 0 0 4px rgba(107,156,255,0.2) }
 @media (max-width: 768px) {
   .timeline { gap: 8px }
   .tl-card { padding: 6px }
