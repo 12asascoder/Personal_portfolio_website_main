@@ -47,6 +47,7 @@ class ErrorBoundary extends React.Component {
 }
 
 function Navbar({ profile, ghProfile }) {
+  const [menuOpen, setMenuOpen] = React.useState(false);
   const items = [
     { href: '/about', label: 'About' },
     { href: '/highlights', label: 'Highlights' },
@@ -59,7 +60,8 @@ function Navbar({ profile, ghProfile }) {
   return (
     <nav className="nav">
       <a className="logo" href="https://arnavpfolio.vercel.app" rel="noreferrer">AP</a>
-      <ul>
+      <button className="nav-toggle" aria-label="Open menu" onClick={()=> setMenuOpen(o=>!o)}>⋯</button>
+      <ul className={menuOpen ? 'open' : ''} onClick={()=> setMenuOpen(false)}>
         {items.map((i) => (
           <li key={i.href}><Link to={i.href}>{i.label}</Link></li>
         ))}

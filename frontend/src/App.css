@@ -13,17 +13,25 @@ a { color: var(--text); text-decoration: none }
 .nav, .hero, .section { justify-self: center; align-self: center }
 .nav .logo { width: 44px; height: 44px; border-radius: 12px; background: linear-gradient(135deg, var(--accent), #8e66ff); display:flex; align-items:center; justify-content:center; font-weight: 800 }
 .nav ul { display: flex; gap: 18px; list-style: none; padding: 0; margin: 0 }
+.nav-toggle { display: none; background: transparent; border: 1px solid rgba(255,255,255,0.14); color: var(--text); border-radius: 8px; padding: 6px 10px; cursor: pointer }
 .nav li a { color: var(--muted); padding: 8px 10px; border-radius: 8px }
 .nav li a:hover { background: rgba(255,255,255,0.06); color: var(--text) }
 @media (max-width: 768px) {
   .nav { gap: 6px; padding: 4px }
   .nav .logo { width: 36px; height: 36px; font-size: 14px }
+  .nav-toggle { display: inline-flex; align-items:center; justify-content:center }
   .nav ul { gap: 8px }
   .nav li a { padding: 6px 8px; font-size: 14px }
 }
 @media (max-width: 480px) {
   .nav ul { gap: 4px; flex-wrap: wrap; justify-content: center }
   .nav li a { padding: 4px 6px; font-size: 12px }
+}
+
+/* Mobile menu behavior */
+@media (max-width: 768px) {
+  .nav ul { display: none }
+  .nav ul.open { display: flex; position: absolute; top: 52px; left: 0; right: 0; background: #000; border-bottom: 1px solid rgba(255,255,255,0.06); padding: 10px; gap: 10px; z-index: 60 }
 }
 
 .hero { position: relative; display: grid; place-items: center; text-align: center; padding: 12px 0 8px }
