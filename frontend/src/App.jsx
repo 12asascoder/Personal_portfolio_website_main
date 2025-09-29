@@ -58,7 +58,7 @@ function Navbar({ profile, ghProfile }) {
   ];
   return (
     <nav className="nav">
-      <div className="logo">AP</div>
+      <a className="logo" href="https://arnavpfolio.vercel.app" rel="noreferrer">AP</a>
       <ul>
         {items.map((i) => (
           <li key={i.href}><Link to={i.href}>{i.label}</Link></li>
@@ -282,7 +282,9 @@ function Highlights() {
                   src={p} 
                   alt={e.name+" photo"} 
                   onClick={()=> setZoomSrc(p)}
-                  style={{ width:'100%', height:140, objectFit:'cover', borderRadius:8, cursor:'zoom-in', transition:'transform .2s ease' }} 
+                  style={{ width:'100%', height:140, objectFit:'cover', borderRadius:8, cursor:'zoom-in', transition:'transform .25s ease, filter .25s ease' }} 
+                  onMouseEnter={e=>{ e.currentTarget.style.transform='scale(1.04)'; e.currentTarget.style.filter='brightness(1.1)'; }}
+                  onMouseLeave={e=>{ e.currentTarget.style.transform='scale(1.0)'; e.currentTarget.style.filter='none'; }}
                 />
               ))}
             </div>
