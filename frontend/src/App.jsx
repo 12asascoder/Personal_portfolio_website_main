@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import axios from 'axios';
 import './App.css';
+import LiquidEther from './components/LiquidEther.jsx';
+import CardSwap, { Card } from './components/CardSwap.jsx';
 
 function useApi(url) {
   const [data, setData] = useState(null);
@@ -76,11 +78,12 @@ function Hero({ ghProfile, profile }) {
       <div className="grid-bg" aria-hidden="true" />
       {(() => {
         const avatar = profile?.avatar;
+        const isAbsolute = avatar && /^(https?:)?\/\//.test(avatar);
         const resolved = avatar
-          ? (avatar.startsWith('http') ? avatar : `${import.meta.env.VITE_API_URL || ''}${avatar}`)
+          ? (isAbsolute ? avatar : (avatar.startsWith('/') ? avatar : `${import.meta.env.VITE_API_URL || ''}${avatar}`))
           : null;
         return resolved ? (
-          <img src={resolved} alt="Profile" className="avatar avatar-lg" />
+          <a href="/"><img src={resolved} alt="Profile" className="avatar avatar-lg" /></a>
         ) : (
         <div className="avatar avatar-placeholder">{(profile?.name || 'AP').split(' ').map(s=>s[0]).join('').slice(0,2).toUpperCase()}</div>
         );
@@ -268,6 +271,13 @@ function Highlights() {
   return (
     <section id="highlights" className="section">
       <h2>Highlights</h2>
+      <div style={{ height: '400px', position: 'relative', width:'100%', maxWidth:900 }}>
+        <CardSwap cardDistance={60} verticalDistance={70} delay={5000} pauseOnHover={false}>
+          <Card><div style={{width:'100%',height:'100%',display:'grid',placeItems:'center'}}>🌟 AARUUSH</div></Card>
+          <Card><div style={{width:'100%',height:'100%',display:'grid',placeItems:'center'}}>🎓 SRMIST</div></Card>
+          <Card><div style={{width:'100%',height:'100%',display:'grid',placeItems:'center'}}>🤖 Robotics</div></Card>
+        </CardSwap>
+      </div>
       <div style={{ display:'grid', gap: 18, width:'100%', maxWidth: 900, padding: '0 16px' }}>
         {highlights.map((e, idx) => (
           <div key={idx} className="card">
@@ -568,6 +578,7 @@ export default function App({ section }) {
   return (
     <ErrorBoundary>
     <div className="app">
+        <LiquidEther />
         <Navbar profile={profile} ghProfile={ghProfile} />
         {!section && <Hero ghProfile={ghProfile} profile={profile} />}
         {section === 'about' && <About />}
