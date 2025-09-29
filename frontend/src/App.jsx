@@ -317,22 +317,22 @@ function About() {
           whileHover={{ scale: 1.02, x: 10 }}
           transition={{ type: "spring", stiffness: 300 }}
           style={{ margin: '0 0 8px 0' }}
-        >Hi! Name's Arnav Puggal. I have always been intrigued by the sight of technology. So, to follow my dreams 'legally' I have inspired to be a master in the field of quantum mechanics for as long as I can remember. Now, I am on my path to chase my ambition and achieve what I had always aimed for.</motion.p>
+        >Hi! I am Arnav Puggal, Co‑Founder at HRCC SRMIST and a BTech Computer Science Engineering student with a specialization in Software Engineering at SRM Institute of Science and Technology. From an early fascination with technology and mechanics to pursuing my academic journey, I have been driven by curiosity, passion, and a desire to master fields that shape the future — ranging from quantum mechanics to full‑stack development.</motion.p>
         <motion.p 
           whileHover={{ scale: 1.02, x: 10 }}
           transition={{ type: "spring", stiffness: 300 }}
           style={{ margin: '0 0 8px 0' }}
-        >I believe in making the best use of my knowledge physical and mental strength to promote the best use of tech world around me. Looking out for a fixed aim aids me to become a good basketball player by the day. Indeed that came out from practising the sport with full passion.</motion.p>
+        >I am deeply passionate about building technology that makes a difference, and I constantly explore the intersections of software engineering, mechatronics, cybersecurity, artificial intelligence, and machine learning. As a developer, I focus on writing clean, efficient, and secure code, designing scalable architectures, and creating user‑friendly digital experiences.</motion.p>
         <motion.p 
           whileHover={{ scale: 1.02, x: 10 }}
           transition={{ type: "spring", stiffness: 300 }}
           style={{ margin: '0 0 8px 0' }}
-        >When I was introduced to the field of coding and mechanics I was as bad as the rabbit in the race of tortoise. I am an ardent believer of returning to the society. So, I try to partake all of my skills as much as possible, by participating in various activities and improving my IQ and trying to be the best in as many fields as possible.</motion.p>
+        >My curiosity in AI and ML drives me to work on models that can provide innovative solutions to real‑world problems, while my interest in cybersecurity keeps me focused on strengthening systems to protect against emerging threats.</motion.p>
         <motion.p 
           whileHover={{ scale: 1.02, x: 10 }}
           transition={{ type: "spring", stiffness: 300 }}
           style={{ margin: '0 0 8px 0' }}
-        >I am Arnav Puggal, Co Founder at HRCC SRMIST and a BTech Computer Science Engineering student with a specialization in Software Engineering at SRM Institute of Science and Technology. I am passionate about building technology that creates real impact and continuously explore the intersections of full stack software development, frontend and backend engineering, API integration, cybersecurity, mechatronic systems, and artificial intelligence and machine learning.</motion.p>
+        >Alongside academics I have cultivated leadership and teamwork skills by co‑founding HRCC SRMIST and actively engaging in activities that encourage collaboration and creative thinking. I strongly believe that learning extends beyond classrooms, so I participate in projects, events and communities where I can both contribute and grow.</motion.p>
         <motion.p 
           whileHover={{ scale: 1.02, x: 10 }}
           transition={{ type: "spring", stiffness: 300 }}
@@ -342,7 +342,7 @@ function About() {
           whileHover={{ scale: 1.02, x: 10 }}
           transition={{ type: "spring", stiffness: 300 }}
           style={{ margin: '0' }}
-        >Outside of academics I am an active basketball player, where I have cultivated teamwork, resilience, and strategic thinking. These qualities naturally extend into my professional work, helping me collaborate effectively, lead when required, and stay focused on continuous improvement. My mission is to contribute to building next generation systems that support social progress and industrial innovation, while developing my skills alongside teams that value curiosity, growth, and a vision for the future.</motion.p>
+        >Beyond the technical space I am an enthusiastic basketball player. The sport has taught me resilience, strategy, discipline, and the importance of collective effort — qualities that extend into my academic and professional life. My mission is to contribute to next‑generation systems that drive social progress and industrial innovation, while growing as a technologist, leader, and individual.</motion.p>
       </motion.div>
     </section>
   );
